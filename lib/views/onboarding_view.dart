@@ -1,3 +1,4 @@
+import 'package:barber_app/constants.dart';
 import 'package:barber_app/views/widgets/onboarding_view_body.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,7 @@ class OnboardingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      backgroundColor: kbgColor,
       body: OnboardingViewBody(),
     );
   }
