@@ -9,10 +9,6 @@ class Assets {
   /// assets/images/beard.png
   static const String imagesBeard = "assets/images/beard.png";
 
-  /// Assets for imagesBoy
-  /// assets/images/boy.jpg
-  static const String imagesBoy = "assets/images/boy.jpg";
-
   /// Assets for imagesCutting
   /// assets/images/cutting.png
   static const String imagesCutting = "assets/images/cutting.png";
@@ -32,6 +28,10 @@ class Assets {
   /// Assets for imagesKids
   /// assets/images/kids.png
   static const String imagesKids = "assets/images/kids.png";
+
+  /// Assets for imagesProfile
+  /// assets/images/profile.png
+  static const String imagesProfile = "assets/images/profile.png";
 
   /// Assets for imagesShaving
   /// assets/images/shaving.png

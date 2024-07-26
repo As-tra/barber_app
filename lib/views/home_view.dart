@@ -1,3 +1,4 @@
+import 'package:barber_app/constants.dart';
 import 'package:barber_app/views/widgets/home_view_body.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,9 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const HomeViewBody();
+    return const Scaffold(
+      backgroundColor: kbgColor,
+      body: SafeArea(child: HomeViewBody()),
+    );
   }
 }
