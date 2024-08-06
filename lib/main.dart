@@ -1,5 +1,4 @@
 import 'package:barber_app/views/home_view.dart';
-import 'package:barber_app/views/onboarding_view.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 

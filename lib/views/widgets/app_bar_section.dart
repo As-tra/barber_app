@@ -32,6 +32,7 @@ class AppBarSection extends StatelessWidget {
           ],
         ),
         CircleAvatar(
+          radius: 25,
           backgroundImage: AssetImage(Assets.imagesProfile),
         )
       ],
