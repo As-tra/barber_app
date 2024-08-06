@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:barber_app/constants.dart';
+import 'package:bottom_picker/bottom_picker.dart';
 import 'package:flutter/material.dart';
 
 class DateShudler extends StatefulWidget {
@@ -12,15 +13,33 @@ class DateShudler extends StatefulWidget {
 
 class _DateShudlerState extends State<DateShudler> {
   Future<void> _selectDate() async {
-    DateTime? pickedDate = await showDatePicker(
-      context: context,
-      firstDate: _currentDate,
-      lastDate: DateTime(2025),
-    );
-    if (pickedDate != null) {
-      _currentDate = pickedDate;
-      setState(() {});
-    }
+    // DateTime? pickedDate = await showDatePicker(
+    //   context: context,
+    //   firstDate: _currentDate,
+    //   lastDate: DateTime(2025),
+    // );
+    // if (pickedDate != null) {
+    //   _currentDate = pickedDate;
+    //   setState(() {});
+    // }
+    BottomPicker.dateTime(
+      pickerTitle: const Text(
+        'Your session will be',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 15,
+          color: Colors.black,
+        ),
+      ),
+      onSubmit: (date) {
+        _currentDate = date;
+        setState(() {});
+      },
+      minDateTime: DateTime.now(),
+      maxDateTime: DateTime(2025),
+      initialDateTime: DateTime.now(),
+      buttonSingleColor: kSecondary,
+    ).show(context);
   }
 
   DateTime _currentDate = DateTime.now();
