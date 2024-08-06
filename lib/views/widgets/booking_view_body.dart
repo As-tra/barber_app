@@ -1,9 +1,12 @@
+import 'package:barber_app/models/service_model.dart';
 import 'package:barber_app/utils/assets.dart';
 import 'package:barber_app/views/widgets/booking_view_app_bar.dart';
+import 'package:barber_app/views/widgets/date_shudler.dart';
 import 'package:flutter/material.dart';
 
 class BookingViewBody extends StatelessWidget {
-  const BookingViewBody({super.key});
+  const BookingViewBody({super.key, required this.serviceModel});
+  final ServiceModel serviceModel;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,17 @@ class BookingViewBody extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 30),
-          Image.asset(Assets.imagesDiscount)
+          Image.asset(Assets.imagesDiscount),
+          const SizedBox(height: 20),
+          Text(
+            serviceModel.title,
+            style: const TextStyle(
+              fontSize: 22,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(height: 20),
+          const  DateShudler(),
         ],
       ),
     );
