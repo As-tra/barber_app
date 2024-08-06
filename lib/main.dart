@@ -1,4 +1,4 @@
-import 'package:barber_app/views/home_view.dart';
+import 'package:barber_app/utils/app_router.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +16,9 @@ class BarberApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      home: HomeView(),
+      routerConfig: AppRouter.router,
     );
   }
 }

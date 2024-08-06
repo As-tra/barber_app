@@ -10,7 +10,7 @@ class OnboardingViewBody extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(height: 100),
-        Image.asset(Assets.imagesBarber),
+        Hero(tag: 'barber',child: Image.asset(Assets.imagesBarber)),
         const SizedBox(height: 40),
         const CustomOnbroadingButton()
       ],

@@ -33,6 +33,7 @@ dependencies:
   fl_chart: ^0.68.0
   flutter:
     sdk: flutter
+  go_router: ^14.2.3
 
 dev_dependencies:
 

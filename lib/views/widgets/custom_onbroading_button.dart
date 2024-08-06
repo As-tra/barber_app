@@ -1,4 +1,7 @@
+import 'package:barber_app/constants.dart';
+import 'package:barber_app/utils/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomOnbroadingButton extends StatelessWidget {
   const CustomOnbroadingButton({
@@ -7,18 +10,23 @@ class CustomOnbroadingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-      decoration: BoxDecoration(
-        color: const Color(0xffdf711a),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: const Text(
-        'Get Stylish Hair Cut',
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 20,
+    return GestureDetector(
+      onTap: () => GoRouter.of(context).push(AppRouter.kHomeView),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        
+        decoration: BoxDecoration(
+          color: kPrimary,
+          borderRadius: BorderRadius.circular(20),
+      
+        ),
+        child: const Text(
+          'Get Stylish Hair Cut',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
         ),
       ),
     );

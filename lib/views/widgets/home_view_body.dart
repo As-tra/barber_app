@@ -7,11 +7,11 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 24),
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -28,12 +28,13 @@ class HomeViewBody extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                SizedBox(height: 20),
               ],
             ),
           ),
-        ),
-        ServicesGridView(),
-      ],
+          ServicesGridView(),
+        ],
+      ),
     );
   }
 }

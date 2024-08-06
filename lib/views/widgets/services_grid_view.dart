@@ -12,16 +12,24 @@ class ServicesGridView extends StatelessWidget {
       image: Assets.imagesShaving,
     ),
     ServiceModel(
-      title: 'Classic Shaving',
-      image: Assets.imagesShaving,
+      title: 'Hair Washing',
+      image: Assets.imagesHair,
     ),
     ServiceModel(
-      title: 'Classic Shaving',
-      image: Assets.imagesShaving,
+      title: 'Hair Cutting',
+      image: Assets.imagesCutting,
     ),
     ServiceModel(
-      title: 'Classic Shaving',
-      image: Assets.imagesShaving,
+      title: 'Beard Trimming',
+      image: Assets.imagesBeard,
+    ),
+    ServiceModel(
+      title: 'Facials',
+      image: Assets.imagesFacials,
+    ),
+    ServiceModel(
+      title: 'Kids Hair Cutting',
+      image: Assets.imagesKids,
     ),
   ];
 
@@ -30,8 +38,8 @@ class ServicesGridView extends StatelessWidget {
     return SliverGrid.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
+        mainAxisSpacing: 15,
+        crossAxisSpacing: 15,
       ),
       itemCount: services.length,
       itemBuilder: (context, index) {
