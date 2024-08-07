@@ -1,10 +1,11 @@
-import 'package:barber_app/views/widgets/custom_form_body.dart';
 import 'package:flutter/material.dart';
 
 class CustomForm extends StatelessWidget {
   const CustomForm({
     super.key,
+    required this.formBody,
   });
+  final Widget formBody;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class CustomForm extends StatelessWidget {
       height: MediaQuery.sizeOf(context).height * 2 / 3,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 32),
       decoration: _buildDecoration(),
-      child: const CustomFormBody(),
+      child: formBody,
     );
   }
 
@@ -26,4 +27,3 @@ class CustomForm extends StatelessWidget {
     );
   }
 }
-

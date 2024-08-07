@@ -1,10 +1,11 @@
 import 'package:barber_app/constants.dart';
 import 'package:flutter/material.dart';
 
-class LoginBg extends StatelessWidget {
-  const LoginBg({
-    super.key,
+class CustomAuthBg extends StatelessWidget {
+  const CustomAuthBg({
+    super.key, required this.title,
   });
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +16,9 @@ class LoginBg extends StatelessWidget {
       decoration: const BoxDecoration(
         gradient: kgradient,
       ),
-      child: const Text(
-        'Hello \nSign in!',
-        style: TextStyle(
+      child:  Text(
+        title,
+        style: const TextStyle(
           color: Colors.white,
           fontSize: 30,
           fontWeight: FontWeight.bold,
