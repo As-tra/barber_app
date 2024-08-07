@@ -5,21 +5,23 @@ class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
     required this.text,
-    required this.ontap,
+    required this.ontap, this.gradient,
   });
   final String text;
   final VoidCallback ontap;
+  final Gradient? gradient;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: ontap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         constraints: const BoxConstraints(minWidth: double.infinity),
         decoration: BoxDecoration(
-          color: kPrimary,
+          color:gradient == null ? kPrimary : null,
           borderRadius: BorderRadius.circular(20),
+          gradient: gradient,
         ),
         child: Text(
           text,
