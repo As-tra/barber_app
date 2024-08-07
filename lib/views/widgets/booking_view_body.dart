@@ -1,7 +1,7 @@
 import 'package:barber_app/models/service_model.dart';
 import 'package:barber_app/utils/assets.dart';
 import 'package:barber_app/views/widgets/booking_view_app_bar.dart';
-import 'package:barber_app/views/widgets/date_shudler.dart';
+import 'package:barber_app/views/widgets/date_sheduler_group.dart';
 import 'package:flutter/material.dart';
 
 class BookingViewBody extends StatelessWidget {
@@ -42,7 +42,7 @@ class BookingViewBody extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          const  DateShudler(),
+          const DateShedulerGroup(),
         ],
       ),
     );
