@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:barber_app/bloc/Auth_bloc/auth_bloc.dart';
 import 'package:barber_app/constants.dart';
+import 'package:barber_app/helpers/show_snack_bar.dart';
 import 'package:barber_app/utils/app_router.dart';
 import 'package:barber_app/views/widgets/custom_button.dart';
 import 'package:barber_app/views/widgets/custom_form_label.dart';
@@ -10,7 +11,6 @@ import 'package:barber_app/views/widgets/custom_password_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class CustomRegisterFormBody extends StatefulWidget {
   const CustomRegisterFormBody({
@@ -25,7 +25,6 @@ class _CustomRegisterFormBodyState extends State<CustomRegisterFormBody> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  bool isLoading = false;
   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -34,60 +33,67 @@ class _CustomRegisterFormBodyState extends State<CustomRegisterFormBody> {
         if (state is RegisterSuccess) {
           GoRouter.of(context).push(AppRouter.kHomeView);
         } else if (state is RegisterFailure) {
-          log(state.errorMessage);
+          log(state.error.code);
+          switch (state.error.code) {
+            case 'invalid-email':
+              showSnackBar(context, 'Invalid Email!');
+            case 'email-already-in-use':
+              showSnackBar(context, 'Email already exist');
+            case 'weak-password':
+              showSnackBar(context, 'Use Stronger password');
+            default:
+              showSnackBar(context, 'We have an Error!');
+          }
         }
-        isLoading = state is AuthLoading;
       },
       builder: (context, state) {
-        return ModalProgressHUD(
-          inAsyncCall: isLoading,
-          child: Form(
-            key: formKey,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  const CustomFormLabel(text: 'Name'),
-                  const SizedBox(height: 10),
-                  CustomFormTextField(
-                    hintText: 'your name ...',
-                    iconData: Icons.person_outline,
-                    controller: nameController,
-                  ),
-                  const SizedBox(height: 30),
-                  const CustomFormLabel(text: 'Email'),
-                  const SizedBox(height: 10),
-                  CustomFormTextField(
-                    hintText: 'example@gmail.com',
-                    iconData: Icons.email_outlined,
-                    controller: emailController,
-                  ),
-                  const SizedBox(height: 30),
-                  const CustomFormLabel(text: 'Password'),
-                  const SizedBox(height: 10),
-                  CustomPasswordField(
-                    controller: passwordController,
-                  ),
-                  const SizedBox(height: 40),
-                  CustomButton(
-                    text: 'SIGN UP',
-                    ontap: () {
-                      if (formKey.currentState!.validate()) {
-                        BlocProvider.of<AuthBloc>(context).add(
-                          LoginEvent(
-                            email: emailController.text,
-                            password: passwordController.text,
-                          ),
-                        );
-                      }
-                    },
-                    gradient: kgradient,
-                  ),
-                  const SizedBox(height: 10),
-                  _buildSignUpLink(context),
-                  const SizedBox(height: 30),
-                ],
-              ),
+        return Form(
+          key: formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                const CustomFormLabel(text: 'Name'),
+                const SizedBox(height: 10),
+                CustomFormTextField(
+                  hintText: 'your name ...',
+                  iconData: Icons.person_outline,
+                  controller: nameController,
+                ),
+                const SizedBox(height: 30),
+                const CustomFormLabel(text: 'Email'),
+                const SizedBox(height: 10),
+                CustomFormTextField(
+                  hintText: 'example@gmail.com',
+                  iconData: Icons.email_outlined,
+                  controller: emailController,
+                ),
+                const SizedBox(height: 30),
+                const CustomFormLabel(text: 'Password'),
+                const SizedBox(height: 10),
+                CustomPasswordField(
+                  controller: passwordController,
+                ),
+                const SizedBox(height: 40),
+                CustomButton(
+                  text: 'SIGN UP',
+                  ontap: () {
+                    if (formKey.currentState!.validate()) {
+                      BlocProvider.of<AuthBloc>(context).add(
+                        RegisterEvent(
+                          email: emailController.text,
+                          password: passwordController.text,
+                          name: nameController.text,
+                        ),
+                      );
+                    }
+                  },
+                  gradient: kgradient,
+                ),
+                const SizedBox(height: 10),
+                _buildSignUpLink(context),
+                const SizedBox(height: 30),
+              ],
             ),
           ),
         );

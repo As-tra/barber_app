@@ -18,7 +18,7 @@ class OnboardingViewBody extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 80),
           child: CustomButton(
             text: 'Get Stylish Hair Cut',
-            ontap: () => GoRouter.of(context).push(AppRouter.kHomeView),
+            ontap: () => GoRouter.of(context).push(AppRouter.kLoginView),
           ),
         )
       ],

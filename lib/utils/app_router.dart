@@ -15,10 +15,6 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const RegisterView(),
-      ),
-      GoRoute(
-        path: '/',
         builder: (context, state) => const OnboardingView(),
       ),
       GoRoute(
@@ -34,6 +30,10 @@ abstract class AppRouter {
       GoRoute(
         path: kLoginView,
         builder: (context, state) => const LoginView(),
+      ),
+      GoRoute(
+        path: kRegisterView,
+        builder: (context, state) => const RegisterView(),
       ),
     ],
   );

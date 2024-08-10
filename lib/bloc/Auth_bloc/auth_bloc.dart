@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,7 +10,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInitial()) {
     on<AuthEvent>(
       (event, emit) async {
-        if (event is LoginEvent) {
+        if (event is RegisterEvent) {
+          try {
+            emit(AuthLoading());
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+              email: event.email,
+              password: event.password,
+            );
+            emit(RegisterSuccess());
+          } on FirebaseAuthException catch (e) {
+            emit(RegisterFailure(error: e));
+          }
+        } else if (event is LoginEvent) {
+          log('here');
           try {
             emit(AuthLoading());
             await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -16,8 +30,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               password: event.password,
             );
             emit(LoginSuccess());
-          } on Exception catch (e) {
-            emit(LoginFailure(errorMessage: e.toString()));
+          } on FirebaseAuthException catch (e) {
+            emit(LoginFailure(error: e));
           }
         }
       },
