@@ -13,7 +13,10 @@ abstract class AppRouter {
   static const kRegisterView = '/Register_view';
   static final router = GoRouter(
     routes: [
-    
+      GoRoute(
+        path: '/',
+        builder: (context, state) => const RegisterView(),
+      ),
       GoRoute(
         path: '/',
         builder: (context, state) => const OnboardingView(),
@@ -28,13 +31,9 @@ abstract class AppRouter {
           serviceModel: state.extra as ServiceModel,
         ),
       ),
-        GoRoute(
+      GoRoute(
         path: kLoginView,
         builder: (context, state) => const LoginView(),
-      ),
-      GoRoute(
-        path: kRegisterView,
-        builder: (context, state) => const RegisterView(),
       ),
     ],
   );

@@ -37,7 +37,9 @@ dependencies:
   fl_chart: ^0.68.0
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.6
   go_router: ^14.2.3
+  modal_progress_hud_nsn: ^0.5.1
 
 dev_dependencies:
   flutter_lints: ^3.0.0

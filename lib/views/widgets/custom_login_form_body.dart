@@ -7,44 +7,59 @@ import 'package:barber_app/views/widgets/custom_password_field.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class CustomLoginFormBody extends StatelessWidget {
+class CustomLoginFormBody extends StatefulWidget {
   const CustomLoginFormBody({
     super.key,
   });
 
   @override
+  State<CustomLoginFormBody> createState() => _CustomLoginFormBodyState();
+}
+
+class _CustomLoginFormBodyState extends State<CustomLoginFormBody> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        const CustomFormLabel(text: 'Email'),
-        const SizedBox(height: 10),
-        const CustomFormTextField(
-          hintText: 'example@gmail.com',
-          iconData: Icons.email_outlined,
-        ),
-        const SizedBox(height: 30),
-        const CustomFormLabel(text: 'Password'),
-        const SizedBox(height: 10),
-        const CustomPasswordField(),
-        const SizedBox(height: 40),
-        const Text(
-          'Forgot password ?',
-          style: TextStyle(
-            color: Color(0xff311937),
-            fontWeight: FontWeight.w500,
+    return Form(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          const CustomFormLabel(text: 'Email'),
+          const SizedBox(height: 10),
+          CustomFormTextField(
+            hintText: 'example@gmail.com',
+            iconData: Icons.email_outlined,
+            controller: emailController,
           ),
-        ),
-        const Spacer(),
-        CustomButton(
-          text: 'SIGN IN',
-          ontap: () {},
-          gradient: kgradient,
-        ),
-        const SizedBox(height: 10),
-        _buildSignUpLink(context),
-        const Spacer(flex: 2),
-      ],
+          const SizedBox(height: 30),
+          const CustomFormLabel(text: 'Password'),
+          const SizedBox(height: 10),
+          CustomPasswordField(
+            controller: passwordController,
+          ),
+          const SizedBox(height: 40),
+          const Text(
+            'Forgot password ?',
+            style: TextStyle(
+              color: Color(0xff311937),
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const Spacer(),
+          CustomButton(
+            text: 'SIGN IN',
+            ontap: () {
+              if (formKey.currentState!.validate()) {}
+            },
+            gradient: kgradient,
+          ),
+          const SizedBox(height: 10),
+          _buildSignUpLink(context),
+          const Spacer(flex: 2),
+        ],
+      ),
     );
   }
 

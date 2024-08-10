@@ -5,7 +5,8 @@ class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
     required this.text,
-    required this.ontap, this.gradient,
+    required this.ontap,
+    this.gradient,
   });
   final String text;
   final VoidCallback ontap;
@@ -19,7 +20,7 @@ class CustomButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         constraints: const BoxConstraints(minWidth: double.infinity),
         decoration: BoxDecoration(
-          color:gradient == null ? kPrimary : null,
+          color: gradient == null ? kPrimary : null,
           borderRadius: BorderRadius.circular(20),
           gradient: gradient,
         ),
