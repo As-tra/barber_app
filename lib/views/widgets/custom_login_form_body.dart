@@ -34,7 +34,7 @@ class _CustomLoginFormBodyState extends State<CustomLoginFormBody> {
         } else if (state is LoginFailure) {
           log(state.error.code);
           switch (state.error.code) {
-            case 'wrong-password':
+            case 'invalid-credential':
               showSnackBar(context, 'Password is Incorrect');
             case 'invalid-email':
               showSnackBar(context, 'Email is Invalid');

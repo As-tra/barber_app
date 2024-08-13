@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:barber_app/bloc/Auth_bloc/auth_bloc.dart';
 import 'package:barber_app/constants.dart';
 import 'package:barber_app/helpers/show_snack_bar.dart';
+import 'package:barber_app/services/database.dart';
 import 'package:barber_app/utils/app_router.dart';
 import 'package:barber_app/views/widgets/custom_button.dart';
 import 'package:barber_app/views/widgets/custom_form_label.dart';
@@ -11,6 +12,7 @@ import 'package:barber_app/views/widgets/custom_password_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:random_string/random_string.dart';
 
 class CustomRegisterFormBody extends StatefulWidget {
   const CustomRegisterFormBody({
