@@ -1,4 +1,5 @@
 import 'package:barber_app/services/database.dart';
+import 'package:barber_app/services/shared_pref.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:random_string/random_string.dart';
@@ -17,8 +18,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               email: event.email,
               password: event.password,
             );
-            // register the user info in the firestore
             String id = randomAlphaNumeric(15);
+            // save info the shared preferences
+            await SharedPrefrenceHelper().saveUserEmail(email: event.email);
+            await SharedPrefrenceHelper().saveUserName(name: event.name);
+            await SharedPrefrenceHelper().saveUserImage(image: '');
+            await SharedPrefrenceHelper().saveUserId(id: id);
+            // register the user info in the firestore
+
             Map<String, dynamic> userInfo = {
               "name": event.name,
               "email": event.email,

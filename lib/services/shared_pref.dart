@@ -12,14 +12,27 @@ class SharedPrefrenceHelper {
   }
 
   Future<bool> saveUserName({required String name}) async {
-    return getIt<SharedPreferences>().setString(userIdKey, name);
+    return getIt<SharedPreferences>().setString(userNameKey, name);
   }
 
   Future<bool> saveUserEmail({required String email}) {
-    return getIt<SharedPreferences>().setString(userIdKey, email);
+    return getIt<SharedPreferences>().setString(userEmailKey, email);
   }
 
   Future<bool> saveUserImage({required String image}) {
-    return getIt<SharedPreferences>().setString(userIdKey, image);
+    return getIt<SharedPreferences>().setString(userImageKey, image);
+  }
+
+  String? getUserId() {
+    return getIt<SharedPreferences>().getString(userIdKey);
+  }
+  String? getEmail() {
+    return getIt<SharedPreferences>().getString(userEmailKey);
+  }
+  String? getUserName() {
+    return getIt<SharedPreferences>().getString(userNameKey);
+  }
+  String? getUserImage() {
+    return getIt<SharedPreferences>().getString(userImageKey);
   }
 }
