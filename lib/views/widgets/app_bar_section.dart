@@ -1,4 +1,6 @@
+import 'package:barber_app/services/shared_pref.dart';
 import 'package:barber_app/utils/assets.dart';
+import 'package:barber_app/utils/service_locator.dart';
 import 'package:flutter/material.dart';
 
 class AppBarSection extends StatelessWidget {
@@ -8,13 +10,14 @@ class AppBarSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const SizedBox(height: 28),
+            const Text(
               'Hello👋🏻,',
               style: TextStyle(
                 color: Color.fromARGB(255, 245, 245, 245),
@@ -22,8 +25,8 @@ class AppBarSection extends StatelessWidget {
               ),
             ),
             Text(
-              'Assil Mathlouthi',
-              style: TextStyle(
+              getIt<SharedPrefrenceHelper>().getUserName() ?? '',
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -31,12 +34,9 @@ class AppBarSection extends StatelessWidget {
             ),
           ],
         ),
-        Hero(
-          tag: 'barber',
-          child: CircleAvatar(
-            radius: 25,
-            backgroundImage: AssetImage(Assets.imagesBarber),
-          ),
+        const CircleAvatar(
+          radius: 25,
+          backgroundImage: AssetImage(Assets.imagesBarber),
         )
       ],
     );
