@@ -15,11 +15,11 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const OnboardingView(),
+        builder: (context, state) => const HomeView(),
       ),
       GoRoute(
-        path: kHomeView,
-        builder: (context, state) => const HomeView(),
+        path: '/',
+        builder: (context, state) => const OnboardingView(),
       ),
       GoRoute(
         path: kBookingView,
