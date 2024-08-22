@@ -1,4 +1,4 @@
-import 'package:barber_app/views/widgets/login_view_body.dart';
+import 'package:barber_app/admin/admin_view_body.dart';
 import 'package:flutter/material.dart';
 
 class AdminView extends StatelessWidget {
@@ -8,7 +8,7 @@ class AdminView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const SafeArea(
       child:  Scaffold(
-        body: LoginViewBody(),
+        body: AdminViewBody(),
       ),
     );
   }

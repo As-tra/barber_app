@@ -3,7 +3,6 @@ import 'package:barber_app/services/shared_pref.dart';
 import 'package:barber_app/utils/service_locator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:random_string/random_string.dart';
 
