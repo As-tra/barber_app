@@ -1,4 +1,3 @@
-
 import 'package:barber_app/bloc/bloc/booking_bloc.dart';
 import 'package:barber_app/constants.dart';
 import 'package:barber_app/helpers/show_snack_bar.dart';
@@ -119,7 +118,7 @@ class _BookingViewBodyState extends State<BookingViewBody> {
                   ontap: _selectTime),
             ),
             const SizedBox(height: 20),
-            BlocListener<BookingBloc, BookingState>(
+            BlocConsumer<BookingBloc, BookingState>(
               listener: (context, state) {
                 if (state is BookingSuccess) {
                   showSnackBar(context, 'Booked Successfully');
@@ -127,30 +126,33 @@ class _BookingViewBodyState extends State<BookingViewBody> {
                   showSnackBar(context, state.message);
                 }
               },
-              child: CustomButton(
-                text: 'Book Now',
-                ontap: () {
-                  // just try to add the date and time inside the booking bloc itself :)
-                  // log(_currentDate.toString());
-                  // log(_currentTime.toString());
-                  BlocProvider.of<BookingBloc>(context).add(
-                    BookingEvent(
-                      bookingModel: BookingModel(
-                        name: getIt<SharedPrefrenceHelper>().getUserName() ??
-                            'Unknown',
-                        email: getIt<SharedPrefrenceHelper>().getEmail() ??
-                            'Unknown',
-                        date: _currentDate.add(
-                          Duration(
-                            hours: _currentTime.hour,
-                            minutes: _currentTime.minute,
+              builder: (context, state) => AbsorbPointer(
+                absorbing: state is BookingLoading,
+                child: CustomButton(
+                  text: 'Book Now',
+                  ontap: () {
+                    // just try to add the date and time inside the booking bloc itself :)
+                    // log(_currentDate.toString());
+                    // log(_currentTime.toString());
+                    BlocProvider.of<BookingBloc>(context).add(
+                      BookingEvent(
+                        bookingModel: BookingModel(
+                          name: getIt<SharedPrefrenceHelper>().getUserName() ??
+                              'Unknown',
+                          email: getIt<SharedPrefrenceHelper>().getEmail() ??
+                              'Unknown',
+                          date: _currentDate.add(
+                            Duration(
+                              hours: _currentTime.hour,
+                              minutes: _currentTime.minute,
+                            ),
                           ),
+                          service: widget.serviceModel.title,
                         ),
-                        service: widget.serviceModel.title,
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             ),
           ],

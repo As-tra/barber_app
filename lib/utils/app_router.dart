@@ -1,3 +1,4 @@
+import 'package:barber_app/admin/admin_view.dart';
 import 'package:barber_app/models/service_model.dart';
 import 'package:barber_app/views/booking_view.dart';
 import 'package:barber_app/views/home_view.dart';
@@ -11,8 +12,14 @@ abstract class AppRouter {
   static const kBookingView = '/Booking_view';
   static const kLoginView = '/Login_view';
   static const kRegisterView = '/Register_view';
+
+  static const kAdminPanel = '/Admin_panel';
   static final router = GoRouter(
     routes: [
+       GoRoute(
+        path: '/',
+        builder: (context, state) => const AdminView(),
+      ),
       GoRoute(
         path: '/',
         builder: (context, state) => const HomeView(),
